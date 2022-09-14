@@ -7,11 +7,11 @@ const loadPhones = async(searchText, dataLimit) =>{
 
 const displayPhones = (phones, dataLimit) =>{
     const phonesContainer = document.getElementById('phones-container');
-    // phonesContainer.textContent = '';
+    phonesContainer.textContent = '';
     // display 10 phones only 
     const showAll = document.getElementById('show-all');
-    if(dataLimit && phones.length > 10) {
-        phones = phones.slice(0, 10);
+    if(dataLimit && phones.length > 12) {
+        phones = phones.slice(0, 12);
         showAll.classList.remove('d-none');
     }
     else{
@@ -29,7 +29,7 @@ const displayPhones = (phones, dataLimit) =>{
     }
     // display all phones
     phones.forEach(phone =>{
-        console.log(phone)
+        // console.log(phone)
         const phoneDiv  = document.createElement('div');
         phoneDiv.classList.add('col');
         phoneDiv.innerHTML = `
@@ -46,25 +46,26 @@ const displayPhones = (phones, dataLimit) =>{
         phonesContainer.appendChild(phoneDiv);
     });
     // stop spinner or loader
-    toggleSpinner(false);
+    toggleSpinner(true);
 }
 
 const processSearch = (dataLimit) =>{
-    toggleSpinner(true);
+    toggleSpinner(false);
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     loadPhones(searchText, dataLimit);
 }
 
 // handle search button click
-document.getElementById('btn-search').addEventListener('click', function(){
+document.getElementById("btn-search").addEventListener('click', function(){
+    console.log('search btn clicked')
     // start loader
     processSearch(10);
 })
 
 // search input field enter key handler
 document.getElementById('search-field').addEventListener('keypress', function (e) {
-    if (e.key === 'enter') {
+    if (e.key === 'Enter') {
         processSearch(10);
     }
 });
@@ -106,4 +107,4 @@ const displayPhoneDetails = phone =>{
     `
 }
 
-loadPhones('apple');
+loadPhones('apple', 12);
