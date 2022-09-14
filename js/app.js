@@ -31,7 +31,7 @@ const displayPhones = (phones, dataLimit) =>{
     phones.forEach(phone =>{
         const phoneDiv  = document.createElement('div');
         phoneDiv.classList.add('col');
-        phonesContainer.innerHTML = `
+        phoneDiv.innerHTML = `
         <div class="card p-4">
             <img src="${phone.images}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -56,7 +56,7 @@ const processSearch = (dataLimit) =>{
 }
 
 // handle search button click
-document.getElementById('#btn-search').addEventListener('click', function(){
+document.getElementById('btn-search').addEventListener('click', function(){
     // start loader
     processSearch(10);
 })
